@@ -24,7 +24,7 @@ st.markdown('Esse dashboard ilustra gráficos com informações sobre distintos 
 lista_jobs = df_dados['job_title'].dropna().unique()
 lista_jobs = np.insert(lista_jobs, 0, 'Todas')
 
-op_natureza = st.sidebar.selectbox('Trabalhos',lista_jobs)
+op_natureza = st.sidebar.selectbox('Salário',lista_jobs)
 
 if op_natureza != 'Todas':
     df_dados = df_dados[df_dados['job_title']==op_natureza]
@@ -57,13 +57,19 @@ st.write("Salário Médio por Tamanho da Companhia")
 media_company = df_dados.groupby('company_size')['salary_in_usd'].mean()
 st.bar_chart(media_company)
 
-# Salario por Profissão
-st.write("Salário Médio por Profissão")
-media_company = df_dados.groupby('job_title')['salary_in_usd'].mean()
-st.bar_chart(media_company)
-
-
-# Salario por Nível de Experiência
+#%% Salario por Profissão
+# Cria uma lista com todas as opções de profissão
+job_titles = df_dados['job_title'].unique().tolist()
+# Cria uma caixa de seleção com as opções de profissão
+selected_jobs = st.multiselect('Selecione as profissões', job_titles, default=job_titles)
+# Filtra os dados com base nas profissões selecionadas
+filtered_data = df_dados[df_dados['job_title'].isin(selected_jobs)]
+# Calcula a média salarial para as profissões selecionadas
+media_jobs = filtered_data.groupby('job_title')['salary_in_usd'].mean()
+# Exibe o resultado
+st.write(f"Salário médio para as profissões {', '.join(selected_jobs)}: {media_jobs.mean()}")
+st.bar_chart(media_jobs)
+#%% Salario por Nível de Experiência
 st.write("Salário Médio por Nível de Experiência")
 media_company = df_dados.groupby('experience_level')['salary_in_usd'].mean()
 st.bar_chart(media_company)
