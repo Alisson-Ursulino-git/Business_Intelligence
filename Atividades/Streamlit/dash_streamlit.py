@@ -40,8 +40,8 @@ df_dados = df_dados[df_dados['salary_in_usd']>= salario_inicial]
 st.dataframe(df_dados)
 
 # Salários por Ano
-df_dados['work_year'] = pd.to_datetime(df_dados['work_year'], format="%Y")
-fig_salario_por_ano = df_dados.groupby(df_dados['work_year'].dt.year)['salary_in_usd'].mean().plot(kind='line')
+#df_dados['work_year'] = pd.to_datetime(df_dados['work_year'], format="%Y")
+fig_salario_por_ano = df_dados.groupby(df_dados['work_year'])['salary_in_usd'].mean().plot(kind='line')
 
 fig_salario_por_ano.set_ylabel('# Salário Médio em Dólar')
 fig_salario_por_ano.set_xlabel('Ano')
@@ -52,23 +52,10 @@ df_dados.info()
 
 # Salario por Companhia
 
-# def graph_size():
-#     media_company = df_dados.groupby('company_size')['salary_in_usd'].mean()
-#     #st.bar_chart(df_dados, x = 'company_size', y= 'salary_in_usd')
-#     # Cra um gráfico de barras com os dados
-    
-#     # Adicione títulos e rótulos
-#     plt.title('Salário Médio por Tamanho da Companhia')
-#     plt.xlabel('Tamanho da Companhia')
-#     plt.ylabel('Salário Médio')
-#     plt.bar(media_company.index, media_company.values)
-#     return plt.show()
-# # Use o Streamlit para exibir o gráfico
-# graph_size()
-
-# Crie um gráfico de barras com os dados
 media_company = df_dados.groupby('company_size')['salary_in_usd'].mean()
 st.bar_chart(media_company)
+# Crie um gráfico de barras com os dados
+
 
 #st.pyplot(plt)
 
