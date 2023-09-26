@@ -51,7 +51,7 @@ st.pyplot(fig_salario_por_ano.figure)
 #df_dados.info()
 #df_dados.groupby(df_dados['company_location'])['salary_in_usd'].mean()
 
-# Salario por Companhia
+# Salario por Tamanho da Companhia
 st.write("Salário Médio por Tamanho da Companhia")
 media_company = df_dados.groupby('company_size')['salary_in_usd'].mean()
 st.bar_chart(media_company)
