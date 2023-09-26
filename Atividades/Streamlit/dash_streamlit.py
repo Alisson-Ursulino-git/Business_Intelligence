@@ -43,22 +43,48 @@ st.dataframe(df_dados)
 df_dados['work_year'] = pd.to_datetime(df_dados['work_year'], format="%Y")
 fig_salario_por_ano = df_dados.groupby(df_dados['work_year'].dt.year)['salary_in_usd'].mean().plot(kind='line')
 
-fig_salario_por_ano.set_ylabel('Salário Médio em Dólar')
+fig_salario_por_ano.set_ylabel('# Salário Médio em Dólar')
 fig_salario_por_ano.set_xlabel('Ano')
 
 st.pyplot(fig_salario_por_ano.figure)
 df_dados.info()
 #df_dados.groupby(df_dados['company_location'])['salary_in_usd'].mean()
-# Salario por Companhia
-media_company = df_dados.groupby(df_dados['company_size'])['salary_in_usd'].mean()
-#st.bar_chart(df_dados, x = 'company_size', y= 'salary_in_usd')
 
-# Cra um gráfico de barras com os dados
-plt.bar(media_company.index, media_company.values)
-# Adicione títulos e rótulos
-plt.title('Salário Médio por Tamanho da Companhia')
-plt.xlabel('Tamanho da Companhia')
-plt.ylabel('Salário Médio')
-#plt.show()
-# Use o Streamlit para exibir o gráfico
-st.pyplot(plt)
+# Salario por Companhia
+
+# def graph_size():
+#     media_company = df_dados.groupby('company_size')['salary_in_usd'].mean()
+#     #st.bar_chart(df_dados, x = 'company_size', y= 'salary_in_usd')
+#     # Cra um gráfico de barras com os dados
+    
+#     # Adicione títulos e rótulos
+#     plt.title('Salário Médio por Tamanho da Companhia')
+#     plt.xlabel('Tamanho da Companhia')
+#     plt.ylabel('Salário Médio')
+#     plt.bar(media_company.index, media_company.values)
+#     return plt.show()
+# # Use o Streamlit para exibir o gráfico
+# graph_size()
+
+# Crie um gráfico de barras com os dados
+media_company = df_dados.groupby('company_size')['salary_in_usd'].mean()
+st.bar_chart(media_company)
+
+#st.pyplot(plt)
+
+# # sinistros por natureza
+# if op_natureza == 'Todas':
+#     fig_pizza_natureza = df_dados['NATUREZA'].value_counts()[0:5].plot(kind='pie')
+
+#     fig_pizza_natureza.set_xlabel('')
+
+#     st.pyplot(fig_pizza_natureza.figure)
+
+# # sinistros por natureza
+
+# # mapa de sinistros
+
+# st.map(df_dados[['LONGITUDE','LATITUDE']].dropna(), longitude='LONGITUDE', latitude='LATITUDE', size='VITIMAS')
+
+# # # mapa de sinistros
+
