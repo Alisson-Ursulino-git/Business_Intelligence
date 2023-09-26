@@ -43,6 +43,7 @@ st.dataframe(df_dados)
 #df_dados['work_year'] = pd.to_datetime(df_dados['work_year'], format="%Y")
 fig_salario_por_ano = df_dados.groupby(df_dados['work_year'])['salary_in_usd'].mean().plot(kind='line')
 
+st.write("Salário Médio por Ano")
 fig_salario_por_ano.set_ylabel('# Salário Médio em Dólar')
 fig_salario_por_ano.set_xlabel('Ano')
 
@@ -51,14 +52,18 @@ st.pyplot(fig_salario_por_ano.figure)
 #df_dados.groupby(df_dados['company_location'])['salary_in_usd'].mean()
 
 # Salario por Companhia
+st.write("Salário Médio por Compania")
 media_company = df_dados.groupby('company_size')['salary_in_usd'].mean()
 st.bar_chart(media_company)
 
 # Salario por Profissão
+st.write("Salário Médio por Profissão")
 media_company = df_dados.groupby('job_title')['salary_in_usd'].mean()
 st.bar_chart(media_company)
 
+st.write("Salário Médio por Nível de Experiência")
 # Salario por Nível de Experiência
+st.write("Salário Médio por Nível de Experiência")
 media_company = df_dados.groupby('experience_level')['salary_in_usd'].mean()
 st.bar_chart(media_company)
 
