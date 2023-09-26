@@ -38,3 +38,12 @@ df_dados = df_dados[df_dados['salary_in_usd']>= salario_inicial]
 # FILTROS
 
 st.dataframe(df_dados)
+
+# Salários por Ano
+df_dados['work_year'] = pd.to_datetime(df_dados['work_year'], format="%Y")
+fig_salario_por_ano = df_dados.groupby(df_dados['work_year'].dt.year)['salary_in_usd'].mean().plot(kind='line')
+
+fig_salario_por_ano.set_ylabel('# Salário Médio em Dólar')
+fig_salario_por_ano.set_xlabel('Ano')
+
+st.pyplot(fig_salario_por_ano.figure)
