@@ -61,38 +61,19 @@ st.write("Salário Médio por Profissão")
 media_company = df_dados.groupby('job_title')['salary_in_usd'].mean()
 st.bar_chart(media_company)
 
-st.write("Salário Médio por Nível de Experiência")
+
 # Salario por Nível de Experiência
 st.write("Salário Médio por Nível de Experiência")
 media_company = df_dados.groupby('experience_level')['salary_in_usd'].mean()
 st.bar_chart(media_company)
 
 # Salario por Localização
+st.write("Salário Médio por Localização")
 media_company = df_dados.groupby('company_location')['salary_in_usd'].mean()
 st.bar_chart(media_company)
 
 # Salario por Residência
+st.write("Salário Médio por Residência")
 media_company = df_dados.groupby('employee_residence')['salary_in_usd'].mean()
 st.bar_chart(media_company)
-
-
-# Crie um gráfico de barras com os dados
-
-#st.pyplot(plt)
-
-# # sinistros por natureza
-# if op_natureza == 'Todas':
-#     fig_pizza_natureza = df_dados['NATUREZA'].value_counts()[0:5].plot(kind='pie')
-
-#     fig_pizza_natureza.set_xlabel('')
-
-#     st.pyplot(fig_pizza_natureza.figure)
-
-# # sinistros por natureza
-
-# # mapa de sinistros
-
-# st.map(df_dados[['LONGITUDE','LATITUDE']].dropna(), longitude='LONGITUDE', latitude='LATITUDE', size='VITIMAS')
-
-# # # mapa de sinistros
 
