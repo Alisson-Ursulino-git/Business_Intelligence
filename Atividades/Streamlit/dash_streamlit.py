@@ -6,8 +6,11 @@ import numpy as np
 plt.style.use('dark_background')
 
 #%% CARREGANDO E PREPARANDO DADOS
+# path = r'C:\Users\aliss\Google Drive\Documentos\Atuária\Business Intelligence\Atividades'
+# path_archive = r'\ds_salaries.csv'
 path = 'https://raw.githubusercontent.com/Alisson-Ursulino-git/Business_Intelligence/main/Atividades/Streamlit/ds_salaries.csv'
-df_dados = pd.read_csv(path)
+df_dados = pd.read_csv(path)#, encoding='ISO-8859-1',delimiter=';')
+
 df_dados.isna().sum()
 
 
@@ -65,12 +68,23 @@ st.write("Salário Médio por Nível de Experiência")
 media_company = df_dados.groupby('experience_level')['salary_in_usd'].mean()
 st.bar_chart(media_company)
 
-# Salario por Localização
-st.write("Salário Médio por Localização")
-media_company = df_dados.groupby('company_location')['salary_in_usd'].mean()
+#%% Salario por Localização
+# Cria uma lista com todas as opções de localização da companhia
+company_locations = df_dados['company_location'].unique().tolist()
+# Cria uma caixa de seleção com as opções de localização da companhia
+selected_locations = st.multiselect('Selecione as localizações da companhia',
+                                    company_locations, default=company_locations)
+# Filtra os dados com base nas localizações da companhia selecionadas
+filtered_data = df_dados[df_dados['company_location'].isin(selected_locations)]
+# Calcula a média salarial para as localizações da companhia selecionadas
+media_company = filtered_data['salary_in_usd'].mean()
+
+# Exibe o resultado
+st.write(f"Salário médio para companhias localizadas em {', '.join(selected_locations)}: {media_company}")
+media_company = filtered_data.groupby('company_location')['salary_in_usd'].mean()
 st.bar_chart(media_company)
 
-# Salario por Residência
+#%% Salario por Residência
 st.write("Salário Médio por Residência")
 media_company = df_dados.groupby('employee_residence')['salary_in_usd'].mean()
 st.bar_chart(media_company)
