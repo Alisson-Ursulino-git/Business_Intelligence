@@ -6,10 +6,8 @@ import numpy as np
 plt.style.use('dark_background')
 
 #%% CARREGANDO E PREPARANDO DADOS
-path = r'C:\Users\aliss\Google Drive\Documentos\Atuária\Business Intelligence\Atividades'
-path_archive = r'\ds_salaries.csv'
-df_dados = pd.read_csv(path+path_archive)#, encoding='ISO-8859-1',delimiter=';')
-
+path = 'https://raw.githubusercontent.com/Alisson-Ursulino-git/Business_Intelligence/main/Atividades/Streamlit/ds_salaries.csv'
+df_dados = pd.read_csv(path)
 df_dados.isna().sum()
 
 
