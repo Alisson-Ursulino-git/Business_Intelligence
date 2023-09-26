@@ -73,6 +73,6 @@ media_company = df_dados.groupby('company_location')['salary_in_usd'].mean()
 st.bar_chart(media_company)
 
 # Salario por Residência
-st.write("Salário Médio por Residência1")
+st.write("Salário Médio por Residência")
 media_company = df_dados.groupby('employee_residence')['salary_in_usd'].mean()
 st.bar_chart(media_company)
