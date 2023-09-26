@@ -47,3 +47,18 @@ fig_salario_por_ano.set_ylabel('# Salário Médio em Dólar')
 fig_salario_por_ano.set_xlabel('Ano')
 
 st.pyplot(fig_salario_por_ano.figure)
+df_dados.info()
+#df_dados.groupby(df_dados['company_location'])['salary_in_usd'].mean()
+# Salario por Companhia
+media_company = df_dados.groupby(df_dados['company_size'])['salary_in_usd'].mean()
+st.bar_chart(df_dados, x = 'company_size', y= 'salary_in_usd')
+# Cra um gráfico de barras com os dados
+plt.bar(media_company.index, media_company.values)
+
+# Adicione títulos e rótulos
+plt.title('Salário Médio por Tamanho da Companhia')
+plt.xlabel('Tamanho da Companhia')
+plt.ylabel('Salário Médio')
+
+# Use o Streamlit para exibir o gráfico
+st.pyplot(plt)
