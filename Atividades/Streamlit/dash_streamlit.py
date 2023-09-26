@@ -59,6 +59,6 @@ plt.bar(media_company.index, media_company.values)
 plt.title('Salário Médio por Tamanho da Companhia')
 plt.xlabel('Tamanho da Companhia')
 plt.ylabel('Salário Médio')
-
+#plt.show()
 # Use o Streamlit para exibir o gráfico
 st.pyplot(plt)
