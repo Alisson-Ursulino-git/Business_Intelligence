@@ -47,15 +47,31 @@ fig_salario_por_ano.set_ylabel('# Salário Médio em Dólar')
 fig_salario_por_ano.set_xlabel('Ano')
 
 st.pyplot(fig_salario_por_ano.figure)
-df_dados.info()
+#df_dados.info()
 #df_dados.groupby(df_dados['company_location'])['salary_in_usd'].mean()
 
 # Salario por Companhia
-
 media_company = df_dados.groupby('company_size')['salary_in_usd'].mean()
 st.bar_chart(media_company)
-# Crie um gráfico de barras com os dados
 
+# Salario por Profissão
+media_company = df_dados.groupby('job_title')['salary_in_usd'].mean()
+st.bar_chart(media_company)
+
+# Salario por Nível de Experiência
+media_company = df_dados.groupby('experience_level')['salary_in_usd'].mean()
+st.bar_chart(media_company)
+
+# Salario por Localização
+media_company = df_dados.groupby('company_location')['salary_in_usd'].mean()
+st.bar_chart(media_company)
+
+# Salario por Residência
+media_company = df_dados.groupby('employee_residence')['salary_in_usd'].mean()
+st.bar_chart(media_company)
+
+
+# Crie um gráfico de barras com os dados
 
 #st.pyplot(plt)
 
